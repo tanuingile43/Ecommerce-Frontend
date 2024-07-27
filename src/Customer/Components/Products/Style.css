@@ -25,6 +25,13 @@
 
 }
 
+.products_grid .product_card .poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
 
 .products_grid .product_card .product_info{
     width: 100%;
@@ -42,12 +49,16 @@
     color: #585859;
 }
 
- .product_info  .title{
+ .product_info   .title{
     font-size: 17px;
     font-weight: 500;
     color: #333;
     margin: 2px 0px 6px 0px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
  .product_info .price_box .discounted_price {
        font-weight: 500;
@@ -130,6 +141,12 @@
     border-radius: 3px;
 
 }
+.products_carousel_grid .product_carousel_card .poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
 
 
 .products_carousel_grid .product_carousel_card .product_carousel_info{
@@ -153,6 +170,9 @@
     font-weight: 500;
     color: #333;
     margin: 2px 0px 6px 0px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
  .product_carousel_info .price_carousel_box .discounted_price {

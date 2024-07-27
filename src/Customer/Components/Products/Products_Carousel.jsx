@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Product_Carousel_Card from '../Cards/Product_Carousel_Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { findProducts } from '../../../State/Products/Action';
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -22,18 +24,27 @@ const responsive = {
   }
 }
 
+
 const Products_Carousel = () => {
+  const dispatch = useDispatch()
+  const { products } = useSelector(state => state.products);
+
+  useEffect(() => {
+    dispatch(findProducts())
+  }, [])
+
   return (
-  <>
-  <div className="heading">Product Carousel</div>
-   <div className="carousel">
-   <Carousel responsive={responsive} className='products_carousel_grid ' >
+    <>
+      <div className="heading">Product Carousel</div>
+      <div className="carousel">
+        <Carousel responsive={responsive} className='products_carousel_grid ' >
           {
-            [1,1,1,1,1,1,1,1,1,1,1,1,1].map((item,index) => <Product_Carousel_Card />)
+            products.content?.map((item, index) => <Product_Carousel_Card product={item} key={index} />)
           }
-     </Carousel>
-   </div>
-  </>
+
+        </Carousel>
+      </div>
+    </>
   )
 }
 

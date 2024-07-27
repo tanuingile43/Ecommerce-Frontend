@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FiShoppingCart } from "react-icons/fi";
@@ -10,6 +10,8 @@ import { deepPurple } from '@mui/material/colors'
 import { RiStoreLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import Auth_Modal from '../../../Authentication/Auth_Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser, logout } from '../../../State/Auth/Action';
 
 
 function classNames(...classes) {
@@ -22,6 +24,9 @@ const Navigation = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const openUserMenu = Boolean(anchorEl);
   const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const  auth  = useSelector(state => state.auth);
 
 
 
@@ -45,6 +50,32 @@ const Navigation = () => {
   const handleCategoryClick = (category, section, item, close) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
+  }
+
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt));
+
+    }
+    
+  }, [jwt, auth.jwt])
+
+  useEffect(() => {
+
+    if(auth.user){
+      handleClose()
+    }
+    if(location.pathname === "/login" || location.pathname==='/signup'){
+      navigate(-1)
+    }
+  
+  }, [auth.user])
+
+
+  const handleLogout = () =>{
+    dispatch(logout())
+    handleCloseUserMenu()
   }
 
 
@@ -265,7 +296,7 @@ const Navigation = () => {
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   {
-                    false ? (
+                    auth.user?.firstName ? (
                       <div>
                         <Avatar className='text-white'
                           onClick={handleUserClick}
@@ -273,7 +304,7 @@ const Navigation = () => {
                           area-haspopup='true'
                           area-expanded={open ? 'true' : undefined}
                           sx={{ bgcolor: deepPurple[500], color: "white", cursor: "pointer" }}  >
-                          S
+                          {auth.user?.firstName[0].toUpperCase()}
                         </Avatar>
                         <Menu id="basic-menu"
                           anchorEl={anchorEl}
@@ -283,7 +314,7 @@ const Navigation = () => {
                         >
                           <MenuItem onClick={handleCloseUserMenu}>Profile </MenuItem>
                           <MenuItem onClick={() => navigate('/account/order')}> My Orders</MenuItem>
-                          <MenuItem  >Logout </MenuItem>
+                          <MenuItem onClick={handleLogout} >Logout </MenuItem>
                         </Menu>
                       </div>
                     ) : (

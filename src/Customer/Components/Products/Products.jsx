@@ -8,6 +8,8 @@ import { FormControl, FormControlLabel, FormLabel, Pagination, Radio, RadioGroup
 import { IoFilter } from "react-icons/io5";
 import { useLocation, useNavigate } from 'react-router-dom'
 import Product_Card from '../Cards/Product_Card'
+import { findProducts } from '../../../State/Products/Action'
+import { useDispatch, useSelector } from 'react-redux'
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -25,7 +27,13 @@ const Products = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate();
-
+  const dispatch =useDispatch()
+  const { products } = useSelector(state => state.products);
+  
+     useEffect(() => {
+        dispatch(findProducts())
+     }, [])
+     
 
   const handleFilter = (value, sectionId) => {
 
@@ -322,7 +330,7 @@ const Products = () => {
               <div className="lg:col-span-4 w-full">
                 <div className="products_grid">
                   {
-                    [1, 1, 1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((item, index) => <Product_Card />)
+                  products.content?.map((item, index) => <Product_Card product={item} key={index} />)
                   }
                 </div>
               </div>

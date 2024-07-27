@@ -1,20 +1,40 @@
 import React, { useEffect } from 'react'
 import { Button, Grid, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, register } from '../State/Auth/Action'
 
 const Signup = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+ 
+    const jwt = localStorage.getItem("jwt");
+ 
+    const  auth  = useSelector(state => state.auth);
 
-    const navigate = useNavigate();
+    
+    useEffect(() => {
 
+        if (jwt) {
+            dispatch(getUser(jwt));
+        }
 
+    }, [jwt, auth.jwt])
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-    }
-
+ 
+     const handleSubmit = (e) => {
+         e.preventDefault();
+          const data = new FormData(e.currentTarget)
+ 
+          const userData = {
+             firstName:data.get('firstName'),
+             lastName:data.get('lastName'),
+             mobile:data.get('mobile'),
+             password:data.get('password'),
+             email:data.get('email'),
+          }
+          dispatch(register(userData));
+     }
 
     return (
         <div>
