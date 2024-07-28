@@ -1,0 +1,143 @@
+.product_details_section{
+    width: 100%;
+    position: relative;
+    display: flex;
+    gap: 50px;
+    padding: 2%;
+    background-color: #eeeeee;
+}
+
+.product_details_section .images{
+    width: 300px;
+    height: auto;
+    position: relative;
+}
+
+.product_details_section .images .poster{
+    width: 300px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 4px;
+    position: relative;
+    padding: 5px;
+}
+.product_details_section .images .poster img{
+    width: 300px;
+    height: 340px;
+    object-fit: cover;
+    object-position: top center;
+}
+.product_details_section .images .image_grid{
+     display: flex;
+     gap: 10px;
+     align-items: center;
+   margin-top: 15px;
+}  
+
+
+.images .image_grid  img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: top center;
+    background-color: #fff;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+
+.product_details_section .product_data{
+    flex-grow: 1;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+
+.product_data .breadcrumb{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product_data .breadcrumb a{
+    color: #575757;
+    transition: 0.5s ease;
+    font-weight: 500;
+}
+
+.product_data .breadcrumb a:hover{
+    color: #661dee;
+}
+
+.product_data .brand{
+     font-weight: 600;
+     font-size: 17px;
+     color: #575757;
+     margin-top: 10px;
+}
+
+.product_data .title{
+    font-size: 17px;
+    font-weight: 500;
+    color: #212121;
+}
+
+.product_data .price_details .discounted_price{
+    font-weight: 700;
+    color: #212121;
+    font-size: 22px;
+}
+
+.product_data .price_details .price{
+    font-size: 17px;
+    font-weight: 500;
+    color: #575757;
+}
+
+.product_data .price_details .discount{
+    font-weight: 500;
+    font-size: 18px;
+    color: #661dee;
+}
+
+.product_data .color{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+
+}
+
+
+@media(max-width:991px){
+    .product_details_section{
+        display: block;
+
+    }
+    .product_details_section .images{
+        display: flex;
+        width:100%;
+        margin-bottom: 20px;
+        gap: 20px;
+    }
+    .product_details_section .images .image_grid{
+        display: block;
+        margin: 0;
+    }
+
+    .images .image_grid img{
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+    .product_details_section .product_data{
+        width: 100%;
+    }
+    .product_data .breadcrumb{
+        width: 100%;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       overflow: hidden;
+    }
+}

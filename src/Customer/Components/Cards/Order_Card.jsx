@@ -2,7 +2,7 @@ import React from 'react'
 
 const Order_Card = () => {
   return (
-    <div>Order_Card</div>
+    <div className='order_card'>Order_Card</div>
   )
 }
 

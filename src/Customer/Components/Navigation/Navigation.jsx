@@ -312,7 +312,8 @@ const Navigation = () => {
                           onClose={handleCloseUserMenu}
                           MenuListProps={{ "aria-labelledby": "basic-button" }}
                         >
-                          <MenuItem onClick={handleCloseUserMenu}>Profile </MenuItem>
+                          {/* onClick={handleCloseUserMenu} */}
+                          <MenuItem onClick={() => navigate('/account/user-profile')}>Profile </MenuItem>
                           <MenuItem onClick={() => navigate('/account/order')}> My Orders</MenuItem>
                           <MenuItem onClick={handleLogout} >Logout </MenuItem>
                         </Menu>
