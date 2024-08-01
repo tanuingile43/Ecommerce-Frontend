@@ -18,7 +18,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navigation = () => {
+const Header = () => {
   const [open, setOpen] = useState(false)
   const [openAuthModel, setAuthModel] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -350,7 +350,7 @@ const Navigation = () => {
 }
 
 
-export default Navigation
+export default Header
 
 
 
