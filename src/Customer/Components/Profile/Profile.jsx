@@ -12,6 +12,7 @@ const Profile = () => {
   const jwt = localStorage.getItem("jwt");
   const auth = useSelector(state => state.auth);
   const [addresses, setAddresses] = useState([]);
+  
 
   useEffect(() => {
     if (auth.user && auth.user.address) {
